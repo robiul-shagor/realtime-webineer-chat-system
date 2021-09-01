@@ -1,0 +1,396 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafc;
+  color: #595354;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 10px 40px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header > .logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header > .logo-container > .logo-img {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.header > .logo-container > .logo-text {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header > .logo-container > .logo-text > .logo-highlight {
+  color: #65a9e5;
+}
+
+.content-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.active-users-panel {
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #cddfe7;
+  display: none;
+}
+
+.panel-title {
+  margin: 10px 0 0 0;
+  padding-left: 30px;
+  font-weight: 500;
+  font-size: 18px;
+  border-bottom: 1px solid #cddfe7;
+  padding-bottom: 10px;
+}
+
+.active-user {
+  padding: 10px 30px;
+  border-bottom: 1px solid #cddfe7;
+  cursor: pointer;
+  user-select: none;
+}
+
+.active-user:hover {
+  background-color: #e8e9eb;
+  transition: background-color 0.5s ease;
+}
+
+.active-user--selected {
+  background-color: #fff;
+  border-right: 5px solid #65a9e5;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}
+
+.video-chat-container {
+  height: 100vh;
+  padding: 0 0;
+  flex: 1;
+  position: relative;
+}
+
+.video-chat-container .video-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.talk-info {
+  font-weight: 500;
+  font-size: 21px;
+}
+
+.remote-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.local-video {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  width: 225px;
+  z-index: 10;
+}
+
+.video-controller-container {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  padding: 45px;
+}
+.video-controller-container:before {
+  content: '';
+  background: linear-gradient(rgba(0,0,0,0.65) 100%, rgba(255, 255, 255, 0) 0%);
+  opacity: 0.45;
+  position: absolute;
+  left: 0;
+  right: 100%;
+  height: 100vh;
+  width: 100%;
+  bottom: 0;
+  top: auto;
+}
+.left-control,
+.center-control,
+.right-control {
+  position: relative;
+  z-index: 10;
+}
+
+.left-control,
+.center-control,
+.right-control {
+  display: flex;
+  align-items: center;
+}
+.left-control svg,
+.right-control svg {
+  width: 30px;
+}
+
+#mute-audio a {
+  display: block;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 50px;
+}
+#end-calling a {
+  display: block;
+  background-color: #D90000;
+  padding: 15px;
+  border-radius: 50px;
+}
+#disable-video a {
+  display: block;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 50px;
+}
+#mute-audio a svg,
+#disable-video a svg,
+#end-calling a svg {
+  width: 40px;
+  height: 40px;
+}
+#end-calling a  {
+  width: 70px;
+}
+#end-calling a svg {
+  width: 35px;
+  transform: rotate( 135deg );
+}
+.left-control > *,
+.center-control  > *,
+.right-control  > * {
+  margin: 0 10px;
+}
+#mute-audio #unmute-audio-btn {
+  display: none;
+}
+#disable-video #video-enable-btn {
+  display: none;
+}
+.container-fluid {
+  padding: 0;
+}
+#record-video {
+  display: none;
+}
+#options-panel {
+  display: none;
+}
+#call-timer {
+  color: #fff;
+  font-size: 16px;
+}
+#screen-share {
+  display: none;
+}
+
+#chat-boxs {
+  background: #fff;
+  height: 100vh;
+  transition: all 0.35s ease-in;
+  width: 300px;
+  display: none;
+  z-index: 333;
+  position: relative;
+}
+@media only screen and (max-width: 767px) {
+  #chat-boxs {
+    width: 100%;
+  }
+}
+#chat-boxs.active {
+  display: block;
+}
+
+#close-chat {
+  position: absolute;
+  right: -35px;
+  top: 20px;
+  width: 29px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+#close-chat:hover {
+  opacity: 1;
+}
+#close-chat:before, #close-chat:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+#close-chat:before {
+  transform: rotate(45deg);
+}
+#close-chat:after {
+  transform: rotate(-45deg);
+}
+
+
+#local-video.active {
+  visibility: hidden;
+}
+
+.main__chat_window {
+  flex-grow: 1;
+  overflow-y: scroll;
+  height: 90vh;
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main__chat_window::-webkit-scrollbar {
+  display: none;
+}
+
+.main__message_container {
+  padding: 0 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+.main__message_container > input {
+  flex: 1;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 12px;
+  border: none;
+}
+.main__message_container > input:focus {
+  outline: none;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem;
+  padding: 0;
+  width: 100%;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.message.me {
+  align-items: flex-start;
+}
+
+.message svg {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.message > b {
+  color: #eeeeee;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.message > b > i {
+  margin-right: 0.7rem;
+  font-size: 1.5rem;
+}
+
+.message > span {
+  background-color: #eeeeee;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.chat-box-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+#chat-panel.new-message {
+  position: relative;
+}
+#chat-panel.new-message:before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: red;
+  border-radius: 50px;
+  position: absolute;
+  right: -5px;
+  top: 10px;
+  border: 2px solid #fff;
+}
+  
+@media only screen and (max-width: 767px) {
+  .local-video {
+    width: 90px;
+    top: 20px;
+    right: 20px;
+  }
+  .left-control {
+    position: absolute;
+    bottom: 150px;
+    left: 15px;
+  }
+  .right-control {
+    position: absolute;
+    bottom: 140px;
+    right: 15px;
+  }
+  .video-controller-container {
+    padding: 40px 20px;
+  }
+  #close-chat {
+    right: 5px;
+    top: 0;
+  }
+  .left-control, .center-control, .right-control {
+    justify-content: space-between;
+  }
+}
+#call-timer {
+  display: none;
+}
